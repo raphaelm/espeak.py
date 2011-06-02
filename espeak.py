@@ -1,0 +1,120 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+#       espeak.py
+#       
+#       Copyright 2011 Raphael Michel <webmaster@raphaelmichel.de>
+#       
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 2 of the License, or
+#       (at your option) any later version.
+#       
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
+#       
+#       You should have received a copy of the GNU General Public License
+#       along with this program; if not, write to the Free Software
+#       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#       MA 02110-1301, USA.
+
+"""Python Interface for the eSpeak speech synthesizer
+	
+Built for eSpeak 1.44.04
+
+Not supported eSpeak commandline options: -w, -b, -q, -x, -X, --compile, --ipa, --pho, --phonout, --split, --stdout, --voices"""
+
+ESPEAKCMD = "espeak"
+VOICEDIR = "/usr/share/espeak-data/voices"
+
+import subprocess
+import os
+import sys
+
+class eSpeak:
+	"The interface."
+	
+	def __init__(self, voice = "default", amplitude = 100, gap = 1, capitals = 0, 
+				linelength = 0, pitch = 50, speed = 175, markup = False,
+				nofinalpause = False, path = False, punct = False):
+		"""Initializes an eSpeak process
+		
+		@type voice: string
+		@param voice: Voice to use (e.g. 'en' or 'de')
+		@type amplitude: int
+		@param amplitude: Amplitude, 0 to 200, default is 100
+		@type gap: int
+		@param gap: Word gap. Pause between words, units of 10mS at the default speed
+		@type capitals: int
+		@param capitals: Indicate capital letters with: 1=sound, 2=the word "capitals", higher values indicate a pitch increase.
+		@type linelength: int
+		@param linelength: Line length. If not zero (which is the default), consider lines less than this length as end-of-clause
+		@type pitch: int
+		@param pitch: Pitch adjustment, 0 to 99, default is 50
+		@type speed: int
+		@param speed: Speed in words per minute, 80 to 450, default is 175
+		@type markup: bool
+		@param markup: Interpret SSML markup, and ignore other < > tags
+		@type nofinalpause: bool
+		@param nofinalpause: No final sentence pause at the end of the text
+		@type path: string
+		@param path: Specifies the directory containing the espeak-data directory
+		@type punct: string
+		@param punct: Speak the names of punctuation characters during speaking. If this is C{True}, all punctuation is spoken.
+		"""
+		args = [ESPEAKCMD]
+		
+		if voice is not "default" and os.path.exists(VOICEDIR+'/'+voice):
+			args += ['-v', voice]
+		if amplitude is not 100 and amplitude >= 0 and amplitude <= 200:
+			args += ['-a', str(amplitude)]
+		if gap is not 1:
+			args += ['-g', str(gap)]
+		if capitals is not 0:
+			args += ['-k', str(capitals)]
+		if linelength is not 0:
+			args += ['-l', str(linelength)]
+		if pitch is not 50 and pitch < 100 and pitch >= 0:
+			args += ['-p', str(pitch)]
+		if speed is not 175 and speed > 79 and speed < 451:
+			args += ['-s', str(speed)]
+		if markup:
+			args += ['-m']
+		if nofinalpause:
+			args += ['-z']
+		if path:
+			args += ['--path='+path]
+		if punct is True:
+			args += ['--punct']
+		elif punct is not False:
+			args += ['--punct='+punct]
+		
+		self.sp = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	
+	def say(self, something):
+		"Says something. something can be any type of string or file-like object."
+		if (sys.version_info[0] == 2 and isinstance(something, basestring)) or isinstance(something, str):
+			if sys.version_info[0] == 3:
+				self.sp.stdin.write(bytes(something.strip()+"\n", "utf-8"))
+				self.sp.stdin.flush()
+			else:
+				self.sp.stdin.write(something.strip()+"\n")
+				self.sp.stdin.flush()
+		elif hasattr(something, 'read'):
+			if sys.version_info[0] == 3:
+				self.sp.stdin.write(bytes(something.read().strip()+"\n", "utf-8"))
+				self.sp.stdin.flush()
+			else:
+				self.sp.stdin.write(something.read().strip()+"\n")
+				self.sp.stdin.flush()
+		else:
+			raise ValueError('I don\'t know what this is.')
+		
+	def __del__(self):
+		try:
+			self.sp.communicate()
+			self.sp.terminate()
+		except:
+			pass # don't worry, be happy.
