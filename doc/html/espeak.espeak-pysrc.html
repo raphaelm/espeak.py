@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>espeak.espeak</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="espeak-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/raphaelm/espeak.py">espeak.py</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="espeak-module.html">Package&nbsp;espeak</a> ::
+        Module&nbsp;espeak
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="espeak.espeak-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="espeak.espeak-module.html">Module espeak.espeak</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># Python bindings for the eSpeak speech synthesizer</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"># Python bindings for the eSpeak speech synthesizer</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"># Copyright &#169; 2009-2011 Siegfried-Angel Gevatter Pujals &lt;rainct@ubuntu.com&gt;</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment"># This program is free software: you can redistribute it and/or modify</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment"># it under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation, either version 3 of the License, or</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-comment"># This program is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module espeak.core=espeak.core-module.html"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-0', 'core', 'link-0');">core</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module espeak._repr=espeak._repr-module.html"><a title="espeak._repr" class="py-name" href="#" onclick="return doclink('link-1', '_repr', 'link-1');">_repr</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-comment"># Functions which are already pythonic enough</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Function espeak.core.set_parameter()=espeak.core-module.html#set_parameter"><a title="espeak.core.set_parameter" class="py-name" href="#" onclick="return doclink('link-2', 'set_parameter', 'link-2');">set_parameter</a></tt> <tt class="py-op">=</tt> <tt id="link-3" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-3', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="espeak.core.set_parameter" class="py-name" href="#" onclick="return doclink('link-4', 'set_parameter', 'link-2');">set_parameter</a></tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Function espeak.core.set_voice()=espeak.core-module.html#set_voice"><a title="espeak.core.set_voice" class="py-name" href="#" onclick="return doclink('link-5', 'set_voice', 'link-5');">set_voice</a></tt> <tt class="py-op">=</tt> <tt id="link-6" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-6', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="espeak.core.set_voice" class="py-name" href="#" onclick="return doclink('link-7', 'set_voice', 'link-5');">set_voice</a></tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt id="link-8" class="py-name" targets="Function espeak.core.synth()=espeak.core-module.html#synth"><a title="espeak.core.synth" class="py-name" href="#" onclick="return doclink('link-8', 'synth', 'link-8');">synth</a></tt> <tt class="py-op">=</tt> <tt id="link-9" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-9', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="espeak.core.synth" class="py-name" href="#" onclick="return doclink('link-10', 'synth', 'link-8');">synth</a></tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt id="link-11" class="py-name" targets="Function espeak.core.set_SynthCallback()=espeak.core-module.html#set_SynthCallback"><a title="espeak.core.set_SynthCallback" class="py-name" href="#" onclick="return doclink('link-11', 'set_SynthCallback', 'link-11');">set_SynthCallback</a></tt> <tt class="py-op">=</tt> <tt id="link-12" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-12', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="espeak.core.set_SynthCallback" class="py-name" href="#" onclick="return doclink('link-13', 'set_SynthCallback', 'link-11');">set_SynthCallback</a></tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt id="link-14" class="py-name" targets="Function espeak.core.cancel()=espeak.core-module.html#cancel"><a title="espeak.core.cancel" class="py-name" href="#" onclick="return doclink('link-14', 'cancel', 'link-14');">cancel</a></tt> <tt class="py-op">=</tt> <tt id="link-15" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-15', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="espeak.core.cancel" class="py-name" href="#" onclick="return doclink('link-16', 'cancel', 'link-14');">cancel</a></tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt id="link-17" class="py-name" targets="Function espeak.core.get_parameter()=espeak.core-module.html#get_parameter"><a title="espeak.core.get_parameter" class="py-name" href="#" onclick="return doclink('link-17', 'get_parameter', 'link-17');">get_parameter</a></tt> <tt class="py-op">=</tt> <tt id="link-18" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-18', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="espeak.core.get_parameter" class="py-name" href="#" onclick="return doclink('link-19', 'get_parameter', 'link-17');">get_parameter</a></tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt id="link-20" class="py-name" targets="Function espeak.core.is_playing()=espeak.core-module.html#is_playing"><a title="espeak.core.is_playing" class="py-name" href="#" onclick="return doclink('link-20', 'is_playing', 'link-20');">is_playing</a></tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-21', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="espeak.core.is_playing" class="py-name" href="#" onclick="return doclink('link-22', 'is_playing', 'link-20');">is_playing</a></tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-comment"># Parameter constants</tt> </tt>
+<a name="Parameter"></a><div id="Parameter-def"><a name="L34"></a><tt class="py-lineno">34</tt> <a class="py-toggle" href="#" id="Parameter-toggle" onclick="return toggle('Parameter');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="espeak.espeak.Parameter-class.html">Parameter</a><tt class="py-op">:</tt> </tt>
+</div><div id="Parameter-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Parameter-expanded"><a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">        <tt id="link-23" class="py-name" targets="Variable espeak.espeak.Parameter.Rate=espeak.espeak.Parameter-class.html#Rate"><a title="espeak.espeak.Parameter.Rate" class="py-name" href="#" onclick="return doclink('link-23', 'Rate', 'link-23');">Rate</a></tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-24', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-25" class="py-name" targets="Variable espeak.core.parameter_RATE=espeak.core-module.html#parameter_RATE"><a title="espeak.core.parameter_RATE" class="py-name" href="#" onclick="return doclink('link-25', 'parameter_RATE', 'link-25');">parameter_RATE</a></tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt id="link-26" class="py-name" targets="Variable espeak.espeak.Parameter.Volume=espeak.espeak.Parameter-class.html#Volume"><a title="espeak.espeak.Parameter.Volume" class="py-name" href="#" onclick="return doclink('link-26', 'Volume', 'link-26');">Volume</a></tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-27', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Variable espeak.core.parameter_VOLUME=espeak.core-module.html#parameter_VOLUME"><a title="espeak.core.parameter_VOLUME" class="py-name" href="#" onclick="return doclink('link-28', 'parameter_VOLUME', 'link-28');">parameter_VOLUME</a></tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">        <tt id="link-29" class="py-name" targets="Variable espeak.espeak.Parameter.Pitch=espeak.espeak.Parameter-class.html#Pitch"><a title="espeak.espeak.Parameter.Pitch" class="py-name" href="#" onclick="return doclink('link-29', 'Pitch', 'link-29');">Pitch</a></tt> <tt class="py-op">=</tt> <tt id="link-30" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-30', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Variable espeak.core.parameter_PITCH=espeak.core-module.html#parameter_PITCH"><a title="espeak.core.parameter_PITCH" class="py-name" href="#" onclick="return doclink('link-31', 'parameter_PITCH', 'link-31');">parameter_PITCH</a></tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">        <tt id="link-32" class="py-name" targets="Variable espeak.espeak.Parameter.Range=espeak.espeak.Parameter-class.html#Range"><a title="espeak.espeak.Parameter.Range" class="py-name" href="#" onclick="return doclink('link-32', 'Range', 'link-32');">Range</a></tt> <tt class="py-op">=</tt> <tt id="link-33" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-33', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-34" class="py-name" targets="Variable espeak.core.parameter_RANGE=espeak.core-module.html#parameter_RANGE"><a title="espeak.core.parameter_RANGE" class="py-name" href="#" onclick="return doclink('link-34', 'parameter_RANGE', 'link-34');">parameter_RANGE</a></tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">        <tt id="link-35" class="py-name" targets="Variable espeak.espeak.Parameter.Punctuation=espeak.espeak.Parameter-class.html#Punctuation,Class espeak.espeak.Punctuation=espeak.espeak.Punctuation-class.html"><a title="espeak.espeak.Parameter.Punctuation
+espeak.espeak.Punctuation" class="py-name" href="#" onclick="return doclink('link-35', 'Punctuation', 'link-35');">Punctuation</a></tt> <tt class="py-op">=</tt> <tt id="link-36" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-36', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-37" class="py-name" targets="Variable espeak.core.parameter_PUNCTUATION=espeak.core-module.html#parameter_PUNCTUATION"><a title="espeak.core.parameter_PUNCTUATION" class="py-name" href="#" onclick="return doclink('link-37', 'parameter_PUNCTUATION', 'link-37');">parameter_PUNCTUATION</a></tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt id="link-38" class="py-name" targets="Variable espeak.espeak.Parameter.Capitals=espeak.espeak.Parameter-class.html#Capitals"><a title="espeak.espeak.Parameter.Capitals" class="py-name" href="#" onclick="return doclink('link-38', 'Capitals', 'link-38');">Capitals</a></tt> <tt class="py-op">=</tt> <tt id="link-39" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-39', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Variable espeak.core.parameter_CAPITALS=espeak.core-module.html#parameter_CAPITALS"><a title="espeak.core.parameter_CAPITALS" class="py-name" href="#" onclick="return doclink('link-40', 'parameter_CAPITALS', 'link-40');">parameter_CAPITALS</a></tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt id="link-41" class="py-name" targets="Variable espeak.espeak.Parameter.Wordgap=espeak.espeak.Parameter-class.html#Wordgap"><a title="espeak.espeak.Parameter.Wordgap" class="py-name" href="#" onclick="return doclink('link-41', 'Wordgap', 'link-41');">Wordgap</a></tt> <tt class="py-op">=</tt> <tt id="link-42" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-42', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-43" class="py-name" targets="Variable espeak.core.parameter_WORDGAP=espeak.core-module.html#parameter_WORDGAP"><a title="espeak.core.parameter_WORDGAP" class="py-name" href="#" onclick="return doclink('link-43', 'parameter_WORDGAP', 'link-43');">parameter_WORDGAP</a></tt> </tt>
+</div><a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"> </tt>
+<a name="Punctuation"></a><div id="Punctuation-def"><a name="L43"></a><tt class="py-lineno">43</tt> <a class="py-toggle" href="#" id="Punctuation-toggle" onclick="return toggle('Punctuation');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="espeak.espeak.Punctuation-class.html">Punctuation</a><tt class="py-op">:</tt> </tt>
+</div><div id="Punctuation-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Punctuation-expanded"><a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">        <tt id="link-44" class="py-name" targets="Variable espeak.espeak.Punctuation.Any=espeak.espeak.Punctuation-class.html#Any"><a title="espeak.espeak.Punctuation.Any" class="py-name" href="#" onclick="return doclink('link-44', 'Any', 'link-44');">Any</a></tt> <tt class="py-op">=</tt> <tt id="link-45" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-45', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-46" class="py-name" targets="Variable espeak.core.punctuation_NONE=espeak.core-module.html#punctuation_NONE"><a title="espeak.core.punctuation_NONE" class="py-name" href="#" onclick="return doclink('link-46', 'punctuation_NONE', 'link-46');">punctuation_NONE</a></tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">        <tt id="link-47" class="py-name" targets="Variable espeak.espeak.Punctuation.All=espeak.espeak.Punctuation-class.html#All"><a title="espeak.espeak.Punctuation.All" class="py-name" href="#" onclick="return doclink('link-47', 'All', 'link-47');">All</a></tt> <tt class="py-op">=</tt> <tt id="link-48" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-48', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Variable espeak.core.punctuation_ALL=espeak.core-module.html#punctuation_ALL"><a title="espeak.core.punctuation_ALL" class="py-name" href="#" onclick="return doclink('link-49', 'punctuation_ALL', 'link-49');">punctuation_ALL</a></tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">        <tt id="link-50" class="py-name" targets="Variable espeak.espeak.Punctuation.Custom=espeak.espeak.Punctuation-class.html#Custom"><a title="espeak.espeak.Punctuation.Custom" class="py-name" href="#" onclick="return doclink('link-50', 'Custom', 'link-50');">Custom</a></tt> <tt class="py-op">=</tt> <tt id="link-51" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-51', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-52" class="py-name" targets="Variable espeak.core.punctuation_SOME=espeak.core-module.html#punctuation_SOME"><a title="espeak.core.punctuation_SOME" class="py-name" href="#" onclick="return doclink('link-52', 'punctuation_SOME', 'link-52');">punctuation_SOME</a></tt> </tt>
+</div><a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"><tt class="py-comment"># Event constants</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"><tt id="link-53" class="py-name" targets="Variable espeak.core.event_WORD=espeak.core-module.html#event_WORD,Variable espeak.espeak.event_WORD=espeak.espeak-module.html#event_WORD"><a title="espeak.core.event_WORD
+espeak.espeak.event_WORD" class="py-name" href="#" onclick="return doclink('link-53', 'event_WORD', 'link-53');">event_WORD</a></tt> <tt class="py-op">=</tt> <tt id="link-54" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-54', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="espeak.core.event_WORD
+espeak.espeak.event_WORD" class="py-name" href="#" onclick="return doclink('link-55', 'event_WORD', 'link-53');">event_WORD</a></tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt id="link-56" class="py-name" targets="Variable espeak.core.event_SENTENCE=espeak.core-module.html#event_SENTENCE,Variable espeak.espeak.event_SENTENCE=espeak.espeak-module.html#event_SENTENCE"><a title="espeak.core.event_SENTENCE
+espeak.espeak.event_SENTENCE" class="py-name" href="#" onclick="return doclink('link-56', 'event_SENTENCE', 'link-56');">event_SENTENCE</a></tt> <tt class="py-op">=</tt> <tt id="link-57" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-57', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="espeak.core.event_SENTENCE
+espeak.espeak.event_SENTENCE" class="py-name" href="#" onclick="return doclink('link-58', 'event_SENTENCE', 'link-56');">event_SENTENCE</a></tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"><tt id="link-59" class="py-name" targets="Variable espeak.core.event_MARK=espeak.core-module.html#event_MARK,Variable espeak.espeak.event_MARK=espeak.espeak-module.html#event_MARK"><a title="espeak.core.event_MARK
+espeak.espeak.event_MARK" class="py-name" href="#" onclick="return doclink('link-59', 'event_MARK', 'link-59');">event_MARK</a></tt> <tt class="py-op">=</tt> <tt id="link-60" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-60', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-61" class="py-name"><a title="espeak.core.event_MARK
+espeak.espeak.event_MARK" class="py-name" href="#" onclick="return doclink('link-61', 'event_MARK', 'link-59');">event_MARK</a></tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"><tt id="link-62" class="py-name" targets="Variable espeak.core.event_PLAY=espeak.core-module.html#event_PLAY,Variable espeak.espeak.event_PLAY=espeak.espeak-module.html#event_PLAY"><a title="espeak.core.event_PLAY
+espeak.espeak.event_PLAY" class="py-name" href="#" onclick="return doclink('link-62', 'event_PLAY', 'link-62');">event_PLAY</a></tt> <tt class="py-op">=</tt> <tt id="link-63" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-63', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-64" class="py-name"><a title="espeak.core.event_PLAY
+espeak.espeak.event_PLAY" class="py-name" href="#" onclick="return doclink('link-64', 'event_PLAY', 'link-62');">event_PLAY</a></tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"><tt id="link-65" class="py-name" targets="Variable espeak.core.event_END=espeak.core-module.html#event_END,Variable espeak.espeak.event_END=espeak.espeak-module.html#event_END"><a title="espeak.core.event_END
+espeak.espeak.event_END" class="py-name" href="#" onclick="return doclink('link-65', 'event_END', 'link-65');">event_END</a></tt> <tt class="py-op">=</tt> <tt id="link-66" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-66', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-67" class="py-name"><a title="espeak.core.event_END
+espeak.espeak.event_END" class="py-name" href="#" onclick="return doclink('link-67', 'event_END', 'link-65');">event_END</a></tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"><tt id="link-68" class="py-name" targets="Variable espeak.core.event_MSG_TERMINATED=espeak.core-module.html#event_MSG_TERMINATED,Variable espeak.espeak.event_MSG_TERMINATED=espeak.espeak-module.html#event_MSG_TERMINATED"><a title="espeak.core.event_MSG_TERMINATED
+espeak.espeak.event_MSG_TERMINATED" class="py-name" href="#" onclick="return doclink('link-68', 'event_MSG_TERMINATED', 'link-68');">event_MSG_TERMINATED</a></tt> <tt class="py-op">=</tt> <tt id="link-69" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-69', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-70" class="py-name"><a title="espeak.core.event_MSG_TERMINATED
+espeak.espeak.event_MSG_TERMINATED" class="py-name" href="#" onclick="return doclink('link-70', 'event_MSG_TERMINATED', 'link-68');">event_MSG_TERMINATED</a></tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line"><tt id="link-71" class="py-name" targets="Variable espeak.core.event_PHONEME=espeak.core-module.html#event_PHONEME,Variable espeak.espeak.event_PHONEME=espeak.espeak-module.html#event_PHONEME"><a title="espeak.core.event_PHONEME
+espeak.espeak.event_PHONEME" class="py-name" href="#" onclick="return doclink('link-71', 'event_PHONEME', 'link-71');">event_PHONEME</a></tt> <tt class="py-op">=</tt> <tt id="link-72" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-72', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-73" class="py-name"><a title="espeak.core.event_PHONEME
+espeak.espeak.event_PHONEME" class="py-name" href="#" onclick="return doclink('link-73', 'event_PHONEME', 'link-71');">event_PHONEME</a></tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"> </tt>
+<a name="Gender"></a><div id="Gender-def"><a name="L57"></a><tt class="py-lineno">57</tt> <a class="py-toggle" href="#" id="Gender-toggle" onclick="return toggle('Gender');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="espeak.espeak.Gender-class.html">Gender</a><tt class="py-op">:</tt> </tt>
+</div><div id="Gender-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Gender-expanded"><a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">        <tt id="link-74" class="py-name" targets="Variable espeak.espeak.Gender.Unknown=espeak.espeak.Gender-class.html#Unknown"><a title="espeak.espeak.Gender.Unknown" class="py-name" href="#" onclick="return doclink('link-74', 'Unknown', 'link-74');">Unknown</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">        <tt id="link-75" class="py-name" targets="Variable espeak.espeak.Gender.Male=espeak.espeak.Gender-class.html#Male"><a title="espeak.espeak.Gender.Male" class="py-name" href="#" onclick="return doclink('link-75', 'Male', 'link-75');">Male</a></tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">        <tt id="link-76" class="py-name" targets="Variable espeak.espeak.Gender.Female=espeak.espeak.Gender-class.html#Female"><a title="espeak.espeak.Gender.Female" class="py-name" href="#" onclick="return doclink('link-76', 'Female', 'link-76');">Female</a></tt> <tt class="py-op">=</tt> <tt class="py-number">2</tt> </tt>
+</div><a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line"><tt class="py-comment"># From here one we work on making the remaining functions more pythonic</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"> </tt>
+<a name="list_voices"></a><div id="list_voices-def"><a name="L64"></a><tt class="py-lineno">64</tt> <a class="py-toggle" href="#" id="list_voices-toggle" onclick="return toggle('list_voices');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="espeak.espeak-module.html#list_voices">list_voices</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="list_voices-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="list_voices-expanded"><a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">        <tt class="py-docstring">"""Returns all available voices."""</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-name">voices</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">voice</tt> <tt class="py-keyword">in</tt> <tt id="link-77" class="py-name"><a title="espeak.core" class="py-name" href="#" onclick="return doclink('link-77', 'core', 'link-0');">core</a></tt><tt class="py-op">.</tt><tt id="link-78" class="py-name" targets="Function espeak.core.list_voices()=espeak.core-module.html#list_voices,Function espeak.espeak.list_voices()=espeak.espeak-module.html#list_voices"><a title="espeak.core.list_voices
+espeak.espeak.list_voices" class="py-name" href="#" onclick="return doclink('link-78', 'list_voices', 'link-78');">list_voices</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">                <tt class="py-name">current_voice</tt> <tt class="py-op">=</tt> <tt id="link-79" class="py-name"><a title="espeak._repr" class="py-name" href="#" onclick="return doclink('link-79', '_repr', 'link-1');">_repr</a></tt><tt class="py-op">.</tt><tt id="link-80" class="py-name" targets="Class espeak._repr.Voice=espeak._repr.Voice-class.html"><a title="espeak._repr.Voice" class="py-name" href="#" onclick="return doclink('link-80', 'Voice', 'link-80');">Voice</a></tt><tt class="py-op">(</tt><tt class="py-op">{</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">                        <tt class="py-string">'name'</tt><tt class="py-op">:</tt> <tt class="py-name">voice</tt><tt class="py-op">[</tt><tt class="py-string">'name'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">                        <tt class="py-string">'identifier'</tt><tt class="py-op">:</tt> <tt class="py-name">voice</tt><tt class="py-op">[</tt><tt class="py-string">'identifier'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">                        <tt class="py-string">'gender'</tt><tt class="py-op">:</tt> <tt class="py-name">voice</tt><tt class="py-op">[</tt><tt class="py-string">'gender'</tt><tt class="py-op">]</tt> <tt class="py-keyword">if</tt> <tt class="py-name">voice</tt><tt class="py-op">[</tt><tt class="py-string">'gender'</tt><tt class="py-op">]</tt> <tt class="py-keyword">else</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">                        <tt class="py-string">'age'</tt><tt class="py-op">:</tt> <tt class="py-name">voice</tt><tt class="py-op">[</tt><tt class="py-string">'age'</tt><tt class="py-op">]</tt> <tt class="py-keyword">if</tt> <tt class="py-name">voice</tt><tt class="py-op">[</tt><tt class="py-string">'age'</tt><tt class="py-op">]</tt> <tt class="py-keyword">else</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">                        <tt class="py-string">'variant'</tt><tt class="py-op">:</tt> <tt class="py-name">voice</tt><tt class="py-op">[</tt><tt class="py-string">'variant'</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">                        <tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">                <tt class="py-name">voices</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">current_voice</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">voices</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="espeak-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="https://github.com/raphaelm/espeak.py">espeak.py</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Jun  4 13:34:44 2011
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

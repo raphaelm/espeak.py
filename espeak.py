@@ -22,9 +22,13 @@
 
 """Python Interface for the eSpeak speech synthesizer
 	
-Built for eSpeak 1.44.04
-
-Not supported eSpeak commandline options: -w, -b, -q, -x, -X, --compile, --ipa, --pho, --phonout, --split, --stdout, --voices"""
+@note: Built for eSpeak 1.44.04
+@note: Not supported eSpeak commandline options: -w, -b, -q, -x, -X, --compile, --ipa, --pho, --phonout, --split, --stdout, --voices
+@todo: Add a wait() method (if possible)"""
+__author__ = "Raphael Michel"
+__contact__ = "raphael@geeksfactory.de"
+__copyright__ = "2011 geek's factory"
+__version__ = "0.1.0"
 
 ESPEAKCMD = "espeak"
 VOICEDIR = "/usr/share/espeak-data/voices"
@@ -34,10 +38,21 @@ import os
 import sys
 
 class eSpeakException(Exception):
+	"Base exception class"
+	pass
+
+class eSpeakExceptionClosed(eSpeakException):
+	"This exception is raised when you try to use an eSpeak process which is already closed"
 	pass
 
 class eSpeak:
-	"The interface."
+	"""The interface itself.
+	
+	@ivar open: Is the interface connected to an eSpeak process?
+	@type open: bool
+	"""
+	
+	open = False
 	
 	def __init__(self, voice = "default", amplitude = 100, gap = 1, capitals = 0, 
 				linelength = 0, pitch = 50, speed = 175, markup = False,
@@ -45,27 +60,27 @@ class eSpeak:
 		"""Initializes an eSpeak process
 		
 		@type voice: string
-		@param voice: Voice to use (e.g. 'en' or 'de')
+		@keyword voice: Voice to use (e.g. 'en' or 'de')
 		@type amplitude: int
-		@param amplitude: Amplitude, 0 to 200, default is 100
+		@keyword amplitude: Amplitude, 0 to 200, default is 100
 		@type gap: int
-		@param gap: Word gap. Pause between words, units of 10mS at the default speed
+		@keyword gap: Word gap. Pause between words, units of 10mS at the default speed
 		@type capitals: int
-		@param capitals: Indicate capital letters with: 1=sound, 2=the word "capitals", higher values indicate a pitch increase.
+		@keyword capitals: Indicate capital letters with: 1=sound, 2=the word "capitals", higher values indicate a pitch increase.
 		@type linelength: int
-		@param linelength: Line length. If not zero (which is the default), consider lines less than this length as end-of-clause
+		@keyword linelength: Line length. If not zero (which is the default), consider lines less than this length as end-of-clause
 		@type pitch: int
-		@param pitch: Pitch adjustment, 0 to 99, default is 50
+		@keyword pitch: Pitch adjustment, 0 to 99, default is 50
 		@type speed: int
-		@param speed: Speed in words per minute, 80 to 450, default is 175
+		@keyword speed: Speed in words per minute, 80 to 450, default is 175
 		@type markup: bool
-		@param markup: Interpret SSML markup, and ignore other < > tags
+		@keyword markup: Interpret SSML markup, and ignore other < > tags
 		@type nofinalpause: bool
-		@param nofinalpause: No final sentence pause at the end of the text
+		@keyword nofinalpause: No final sentence pause at the end of the text
 		@type path: string
-		@param path: Specifies the directory containing the espeak-data directory
+		@keyword path: Specifies the directory containing the espeak-data directory
 		@type punct: string
-		@param punct: Speak the names of punctuation characters during speaking. If this is C{True}, all punctuation is spoken.
+		@keyword punct: Speak the names of punctuation characters during speaking. If this is C{True}, all punctuation is spoken.
 		"""
 		args = [ESPEAKCMD]
 		
@@ -104,7 +119,7 @@ class eSpeak:
 		@param something: Text to be spoken
 		"""
 		if not self.open:
-			raise eSpeakException('process already closed.')
+			raise eSpeakExceptionClosed('process already closed.')
 		if (sys.version_info[0] == 2 and isinstance(something, basestring)) or isinstance(something, str):
 			if sys.version_info[0] == 3:
 				self.sp.stdin.write(bytes(something.strip()+"\n", "utf-8"))
@@ -140,6 +155,15 @@ class eSpeak:
 		"""
 		try:
 			self.sp.communicate()
+			self.sp.terminate()
+		except:
+			pass # don't worry, be happy.
+		self.open = False
+	
+	def terminate(self):
+		"""Close the process immediately.
+		"""
+		try:
 			self.sp.terminate()
 		except:
 			pass # don't worry, be happy.

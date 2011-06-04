@@ -1,0 +1,14 @@
+espeak	espeak-module.html
+espeak.VOICEDIR	espeak-module.html#VOICEDIR
+espeak.__package__	espeak-module.html#__package__
+espeak.ESPEAKCMD	espeak-module.html#ESPEAKCMD
+espeak.eSpeak	espeak.eSpeak-class.html
+espeak.eSpeak.__del__	espeak.eSpeak-class.html#__del__
+espeak.eSpeak.terminate	espeak.eSpeak-class.html#terminate
+espeak.eSpeak.reopen	espeak.eSpeak-class.html#reopen
+espeak.eSpeak.say	espeak.eSpeak-class.html#say
+espeak.eSpeak.close	espeak.eSpeak-class.html#close
+espeak.eSpeak.open	espeak.eSpeak-class.html#open
+espeak.eSpeak.__init__	espeak.eSpeak-class.html#__init__
+espeak.eSpeakException	espeak.eSpeakException-class.html
+espeak.eSpeakExceptionClosed	espeak.eSpeakExceptionClosed-class.html
