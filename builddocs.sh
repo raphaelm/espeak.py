@@ -1,2 +1,2 @@
 #!/bin/sh
-epydoc --html -o doc/html -n espeak.py -u https://github.com/raphaelm/espeak.py espeak.py
+epydoc --html -o doc/html -n pyespeak -u https://github.com/raphaelm/espeak.py pyespeak.py

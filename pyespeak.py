@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#       espeak.py
+#       pyespeak.py
 #       
 #       Copyright 2011 Raphael Michel <webmaster@raphaelmichel.de>
 #       
