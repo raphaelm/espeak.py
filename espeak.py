@@ -33,6 +33,9 @@ import subprocess
 import os
 import sys
 
+class eSpeakException(Exception):
+	pass
+
 class eSpeak:
 	"The interface."
 	
@@ -90,11 +93,18 @@ class eSpeak:
 			args += ['--punct']
 		elif punct is not False:
 			args += ['--punct='+punct]
-		
-		self.sp = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		self.args = args
+		self.sp = subprocess.Popen(self.args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		self.open = True
 	
 	def say(self, something):
-		"Says something. something can be any type of string or file-like object."
+		"""Says something (adds it to the queue). something can be any type of string or file-like object.
+		
+		@type something: str or file
+		@param something: Text to be spoken
+		"""
+		if not self.open:
+			raise eSpeakException('process already closed.')
 		if (sys.version_info[0] == 2 and isinstance(something, basestring)) or isinstance(something, str):
 			if sys.version_info[0] == 3:
 				self.sp.stdin.write(bytes(something.strip()+"\n", "utf-8"))
@@ -111,10 +121,31 @@ class eSpeak:
 				self.sp.stdin.flush()
 		else:
 			raise ValueError('I don\'t know what this is.')
+	
+	def reopen(self):
+		"""Waits until everything in the queue is spoken and then closes the process and opens an new one.
 		
-	def __del__(self):
+		Unfortunately there doesn't seem to be any other way to wait for the end of the audio output without terminating the process.
+		"""
 		try:
 			self.sp.communicate()
 			self.sp.terminate()
 		except:
 			pass # don't worry, be happy.
+		self.sp = subprocess.Popen(self.args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		self.open = True
+	
+	def close(self):
+		"""Waits until everything in the queue is spoken and then closes the process.
+		"""
+		try:
+			self.sp.communicate()
+			self.sp.terminate()
+		except:
+			pass # don't worry, be happy.
+		self.open = False
+		
+	def __del__(self):
+		"""Calls .close() before the script can end.
+		"""
+		self.close()
